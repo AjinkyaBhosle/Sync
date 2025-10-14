@@ -222,7 +222,7 @@ export default function Home() {
             <button
               onClick={generateSong}
               disabled={loading}
-              className="w-full bg-gradient-to-r from-pink-500 to-purple-500 text-white py-4 rounded-lg font-semibold hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-gradient-to-r from-pink-500 to-purple-500 text-white py-4 rounded-lg font-semibold hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
             >
               {loading ? 'Generating...' : 'Create Song'}
             </button>
@@ -253,7 +253,7 @@ export default function Home() {
                 </audio>
                 <button
                   onClick={downloadSong}
-                  className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition flex items-center justify-center space-x-2"
+                  className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition flex items-center justify-center space-x-2 cursor-pointer"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -266,13 +266,13 @@ export default function Home() {
 
           <div className="mt-8 flex gap-4">
             <button
-              className="flex-1 bg-blue-500 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-600 transition text-sm"
+              className="flex-1 bg-blue-500 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-600 transition text-sm cursor-pointer"
             >
               💰 Check Credits {credits !== null && `(${credits})`}
             </button>
             <button
               onClick={loadSongHistory}
-              className="flex-1 bg-gray-800 text-white py-3 px-4 rounded-lg font-semibold hover:bg-gray-700 transition text-sm"
+              className="flex-1 bg-purple-500 text-white py-3 px-4 rounded-lg font-semibold hover:bg-purple-600 transition text-sm cursor-pointer"
             >
               🎵 {showSongs ? 'Hide History' : 'Show History'}
             </button>
@@ -298,7 +298,7 @@ export default function Home() {
                           setSongTitle(song.title);
                           setShowSongs(false);
                         }}
-                        className="ml-4 px-4 py-2 bg-primary-accent text-white text-xs font-semibold rounded-full hover:bg-secondary-accent transition"
+                        className="ml-4 px-4 py-2 bg-primary-accent text-white text-xs font-semibold rounded-full hover:bg-secondary-accent transition cursor-pointer"
                       >
                         Play
                       </button>
