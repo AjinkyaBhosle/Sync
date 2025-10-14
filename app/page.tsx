@@ -21,7 +21,7 @@ export default function HomePage() {
 
       <main className="hero-section">
         <div className="hero-content">
-          <h1 className="hero-title">Create Music with AI</h1>
+          <h1 className="hero-title">Create Music with AI v1.1</h1>
           <p className="hero-subtitle">Bring your musical ideas to life. No experience needed.</p>
           <Link href="/generate" className="cta-button">Get Started</Link>
         </div>
