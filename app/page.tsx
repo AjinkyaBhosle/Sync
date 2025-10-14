@@ -189,7 +189,7 @@ export default function Home() {
       <header className="flex justify-between items-center p-4 border-b border-gray-800">
         <h1 className="text-2xl font-bold text-primary-accent">SYNC AI</h1>
         <div className="flex items-center gap-4">
-          <Link href="/login" className="text-sm hover:text-primary-accent transition">Sign In</Link>
+          <Link href="/login" className="text-sm border border-white rounded-full px-4 py-2 hover:bg-white hover:text-black transition">Sign In</Link>
           <Link href="/signup" className="text-sm bg-primary-accent px-4 py-2 rounded-full hover:bg-secondary-accent transition">Sign Up</Link>
         </div>
       </header>
@@ -272,7 +272,7 @@ export default function Home() {
             </button>
             <button
               onClick={loadSongHistory}
-              className="flex-1 bg-purple-500 text-white py-3 px-4 rounded-lg font-semibold hover:bg-purple-600 transition text-sm cursor-pointer"
+              className="flex-1 bg-teal-500 text-white py-3 px-4 rounded-lg font-semibold hover:bg-teal-600 transition text-sm cursor-pointer"
             >
               🎵 {showSongs ? 'Hide History' : 'Show History'}
             </button>
