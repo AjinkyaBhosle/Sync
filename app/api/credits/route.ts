@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 
 export async function GET() {
+  console.log('Checking credits...');
+  console.log('SUNOAPI_ORG:', process.env.SUNOAPI_ORG);
+
   try {
     const response = await fetch('https://api.sunoapi.org/api/v1/generate/credit', {
       headers: {
@@ -9,6 +12,7 @@ export async function GET() {
     });
 
     const data = await response.json();
+    console.log('Suno API response:', data);
 
     if (data.code !== 200) {
       return NextResponse.json(
