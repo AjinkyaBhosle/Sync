@@ -187,7 +187,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="flex justify-between items-center p-4 border-b border-gray-800">
-        <h1 className="text-2xl font-bold text-primary-accent">SYNC AI</h1>
+        <h1 className="text-2xl font-bold text-primary-accent">SYNC</h1>
         <div className="flex items-center gap-4">
           <Link href="/login" className="text-sm border border-white rounded-full px-4 py-2 hover:bg-white hover:text-black transition">Sign In</Link>
           <Link href="/signup" className="text-sm border border-white rounded-full px-4 py-2 hover:bg-white hover:text-black transition">Sign Up</Link>
