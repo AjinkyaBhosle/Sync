@@ -266,8 +266,7 @@ export default function Home() {
 
           <div className="mt-8 flex gap-4">
             <button
-              onClick={checkCredits}
-              className="flex-1 bg-gray-800 text-white py-3 px-4 rounded-lg font-semibold hover:bg-gray-700 transition text-sm"
+              className="flex-1 bg-blue-500 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-600 transition text-sm"
             >
               💰 Check Credits {credits !== null && `(${credits})`}
             </button>
