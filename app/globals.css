@@ -1,13 +1,14 @@
+
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  --background: #0a0a0a;
+  --background: #1a1a1a;
   --foreground: #ffffff;
-  --card-background: #121212;
-  --input-background: #1f1f1f;
-  --primary-accent: #1db954;
-  --secondary-accent: #1ed760;
+  --card-background: #2a2a2a;
+  --input-background: #3a3a3a;
+  --primary-accent: #ff4081;
+  --secondary-accent: #ff80ab;
 }
 
 @theme inline {

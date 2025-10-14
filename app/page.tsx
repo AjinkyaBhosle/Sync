@@ -222,7 +222,7 @@ export default function Home() {
             <button
               onClick={generateSong}
               disabled={loading}
-              className="w-full bg-gradient-to-r from-primary-accent to-secondary-accent text-white py-4 rounded-lg font-semibold hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-gradient-to-r from-pink-500 to-purple-500 text-white py-4 rounded-lg font-semibold hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? 'Generating...' : 'Create Song'}
             </button>
