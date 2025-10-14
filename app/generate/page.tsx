@@ -55,10 +55,7 @@ export default function Home() {
         if (data.error) {
           // Check if it's a sensitive word error
           if (data.sensitiveWordError) {
-            setError('⚠️ Content Moderation: Your prompt contains words that are not allowed. Please try:
-• Avoiding violent, explicit, or offensive content
-• Using more general descriptions
-• Focusing on musical style and mood instead of specific topics');
+            setError('⚠️ Content Moderation: Your prompt contains words that are not allowed. Please try:\n' + '• Avoiding violent, explicit, or offensive content\n' + '• Using more general descriptions\n' + '• Focusing on musical style and mood instead of specific topics');
           } else {
             setError(data.error);
           }
