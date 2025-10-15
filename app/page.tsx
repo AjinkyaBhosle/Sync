@@ -24,6 +24,8 @@ export default function Home() {
   const [lyrics, setLyrics] = useState('');
   const [lyricsLoading, setLyricsLoading] = useState(false);
 
+  const [showLyricsModal, setShowLyricsModal] = useState(false);
+
   const checkStatus = async (taskId: string) => {
     const maxAttempts = 20; // 10 minutes max (20 * 30 seconds) - following API recommendations
     let attempts = 0;
@@ -83,6 +85,22 @@ export default function Home() {
           const saved = JSON.parse(localStorage.getItem('sunoSongs') || '[]') as Song[];
           saved.unshift(song);
           localStorage.setItem('sunoSongs', JSON.stringify(saved.slice(0, 50))); // Keep last 50
+
+          // Generate lyrics
+          try {
+            const lyricsResponse = await fetch('/api/lyrics', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ prompt }),
+            });
+            const lyricsData = await lyricsResponse.json();
+            if (lyricsData.lyrics) {
+              setLyrics(lyricsData.lyrics);
+              setShowLyricsModal(true);
+            }
+          } catch (e) {
+            console.error('Could not fetch lyrics', e);
+          }
           
           return;
         } else if (data.status === 'FAILED') {
@@ -148,36 +166,7 @@ export default function Home() {
     }
   };
 
-  const generateLyrics = async () => {
-    if (!prompt.trim()) {
-      setError('Please enter a song idea to generate lyrics');
-      return;
-    }
 
-    setLyricsLoading(true);
-    setError('');
-    setLyrics('');
-
-    try {
-      const response = await fetch('/api/lyrics', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt }),
-      });
-
-      const data = await response.json();
-
-      if (data.error) {
-        setError(data.error);
-      } else {
-        setLyrics(data.lyrics);
-      }
-    } catch {
-      setError('Failed to generate lyrics. Please try again.');
-    }
-
-    setLyricsLoading(false);
-  };
 
   const downloadSong = async () => {
     if (!audioUrl) return;
@@ -252,27 +241,26 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex gap-4">
-              <button
-                onClick={generateSong}
-                disabled={loading || lyricsLoading}
-                className="w-full bg-gradient-to-r from-pink-500 to-purple-500 text-white py-4 rounded-lg font-semibold hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
-              >
-                {loading ? 'Generating Song...' : 'Create Song'}
-              </button>
-              <button
-                onClick={generateLyrics}
-                disabled={lyricsLoading || loading}
-                className="w-full bg-gradient-to-r from-blue-500 to-teal-500 text-white py-4 rounded-lg font-semibold hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
-              >
-                {lyricsLoading ? 'Generating Lyrics...' : 'Generate Lyrics'}
-              </button>
-            </div>
+            <button
+              onClick={generateSong}
+              disabled={loading}
+              className="w-full bg-gradient-to-r from-pink-500 to-purple-500 text-white py-4 rounded-lg font-semibold hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+            >
+              {loading ? 'Generating...' : 'Create Song'}
+            </button>
 
-            {lyrics && (
-              <div className="mt-6 p-6 bg-gray-800 rounded-lg">
-                <h3 className="text-lg font-semibold mb-2">Generated Lyrics</h3>
-                <p className="text-gray-300 whitespace-pre-line">{lyrics}</p>
+            {showLyricsModal && (
+              <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div className="bg-card-background p-6 rounded-2xl shadow-lg max-w-lg w-full">
+                  <h3 className="text-lg font-semibold mb-2">Generated Lyrics</h3>
+                  <p className="text-gray-300 whitespace-pre-line max-h-96 overflow-y-auto">{lyrics}</p>
+                  <button
+                    onClick={() => setShowLyricsModal(false)}
+                    className="mt-4 w-full bg-primary-accent text-white py-2 rounded-lg font-semibold hover:opacity-90 transition"
+                  >
+                    Close
+                  </button>
+                </div>
               </div>
             )}
 
