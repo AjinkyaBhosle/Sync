@@ -39,6 +39,8 @@ export default function Generate() {
   const [instrumentalUrl, setInstrumentalUrl] = useState('');
   const [showCreateMusicVideoModal, setShowCreateMusicVideoModal] = useState(false);
   const [musicVideoUrl, setMusicVideoUrl] = useState('');
+  const [openMenuId, setOpenMenuId] = useState<string | null>(null);
+
 
   const createMusicVideo = async (taskId: string) => {
     try {
@@ -684,7 +686,7 @@ export default function Generate() {
                 <p className="text-gray-400 text-sm">No songs generated yet.</p>
               ) : (
                 <div className="space-y-3">
-                  const [openMenuId, setOpenMenuId] = useState<string | null>(null);
+
 
                   {songs.map((song: Song) => (
                     <div key={song.id} className="p-4 bg-input-background rounded-lg flex items-center justify-between">
